@@ -1,0 +1,166 @@
+_type: export
+__export_format: 4
+__export_date: 2019-09-13T17:04:55.208Z
+__export_source: insomnia.desktop.app:v6.6.2
+resources:
+  - _id: req_00fa6edf903d4562896752e100738e59
+    authentication: {}
+    body:
+      mimeType: application/graphql
+      text: '{"query":"# Getting started\n#\n# 1. Click on \"No environment\" on the
+        top left\n# 2. Select \"github.com\"\n# 3. Click on \"Manage
+        Environments\"\n# 4. Set up \"GITHUB_GRAPHQL_URL\":\n#   1. For
+        github.com keep \"https://api.github.com/graphql\"\n#   2. For GitHub
+        Enterprise Server set \"https://github.example.com/api/graphql\"\n# 5.
+        Enter your \"GITHUB_PAT\":
+        https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line\n"}'
+    created: 1568390854967
+    description: ""
+    headers:
+      - id: pair_74477319896d43c7bbef5a0b262c8d59
+        name: Content-Type
+        value: application/json
+    isPrivate: false
+    metaSortKey: -1568390854967
+    method: POST
+    modified: 1568394256165
+    name: Getting started
+    parameters: []
+    parentId: wrk_0781844aaded4da5b9b9450de6021713
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingSendCookies: true
+    settingStoreCookies: true
+    url: ""
+    _type: request
+  - _id: wrk_0781844aaded4da5b9b9450de6021713
+    created: 1568389265574
+    description: ""
+    modified: 1568391982158
+    name: GitHub GraphQL API
+    parentId: null
+    _type: workspace
+  - _id: req_687de649468a41fdaec34c52526a23a2
+    authentication:
+      token: "{{ GITHUB_PAT  }}"
+      type: bearer
+    body:
+      mimeType: application/graphql
+      text: '{"query":"# Create issue\n#\n# 1. Get \"id\" from Repositories -> Get
+        repository details\n# 2. Enter \"id\" for \"repositoryId\" in Query
+        Variables section at the bottom\n# 3. Click \"Send\"\n#\n#
+        https://developer.github.com/v4/mutation/createissue/\n#
+        https://developer.github.com/v4/input_object/createissueinput/\n#
+        https://developer.github.com/v4/object/issue/\n\nmutation
+        ($repositoryId: ID!, $title: String!, $body: String!)
+        {\n  createIssue(input: { repositoryId: $repositoryId, title: $title,
+        body: $body }) {\n    clientMutationId\n    issue
+        {\n      body\n      closed\n      createdAt\n      createdViaEmail\n      databaseId\n      id\n      title\n    }\n  }\n}","variables":{"repositoryId":"MDEwOlJlcG9zaXRvcnkz","title":"First
+        issue","body":"Created via GraphQL"}}'
+    created: 1568390149484
+    description: ""
+    headers:
+      - id: pair_53df60095eed4b7b97427668fcfbbd17
+        name: Content-Type
+        value: application/json
+    isPrivate: false
+    metaSortKey: -1568389801061
+    method: POST
+    modified: 1568392357586
+    name: Create issue
+    parameters: []
+    parentId: fld_29a48d6fa7694ae19dd30e95d4ac409c
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingSendCookies: true
+    settingStoreCookies: true
+    url: "{{ GITHUB_GRAPHQL_URL  }}"
+    _type: request
+  - _id: fld_29a48d6fa7694ae19dd30e95d4ac409c
+    created: 1568390146004
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1568390146004
+    modified: 1568390146004
+    name: Issues
+    parentId: wrk_0781844aaded4da5b9b9450de6021713
+    _type: request_group
+  - _id: req_a3b5fba4c0ef418ebd53a03c99edb0c7
+    authentication:
+      token: "{{ GITHUB_PAT  }}"
+      type: bearer
+    body:
+      mimeType: application/graphql
+      text: '{"query":"# Get repository details\n#\n# 1. Set \"owner\" in Query
+        Variables section at the bottom\n# 2. Set \"repo\" in Query Variables
+        section at the bottom\n#\n#
+        https://developer.github.com/v4/object/repository/\n\nquery ($owner:
+        String!, $repo: String!) {\n  repository(owner: $owner, name: $repo)
+        {\n    createdAt\n    databaseId\n    diskUsage\n    id\n    pushedAt\n  }\n}","variables":{"owner":"steffen","repo":"github-graphql-api-for-insomnia"}}'
+    created: 1568389605713
+    description: ""
+    headers:
+      - id: pair_53df60095eed4b7b97427668fcfbbd17
+        name: Content-Type
+        value: application/json
+    isPrivate: false
+    metaSortKey: -1568389996409
+    method: POST
+    modified: 1568392092802
+    name: Get repository details
+    parameters: []
+    parentId: fld_1cff1f70b17f49a5889904a9af223830
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingSendCookies: true
+    settingStoreCookies: true
+    url: "{{ GITHUB_GRAPHQL_URL  }}"
+    _type: request
+  - _id: fld_1cff1f70b17f49a5889904a9af223830
+    created: 1568390126641
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1568390126641
+    modified: 1568390126641
+    name: Repositories
+    parentId: wrk_0781844aaded4da5b9b9450de6021713
+    _type: request_group
+  - _id: env_f05bef0c7999d21e2a6a7cf17a9634dd8191abf2
+    color: null
+    created: 1568389265635
+    data: {}
+    dataPropertyOrder: null
+    isPrivate: false
+    metaSortKey: 1568389265635
+    modified: 1568389265635
+    name: Base Environment
+    parentId: wrk_0781844aaded4da5b9b9450de6021713
+    _type: environment
+  - _id: jar_f05bef0c7999d21e2a6a7cf17a9634dd8191abf2
+    cookies: []
+    created: 1568389265638
+    modified: 1568389265638
+    name: Default Jar
+    parentId: wrk_0781844aaded4da5b9b9450de6021713
+    _type: cookie_jar
+  - _id: env_eb824dd5462b46db8b7aa5a82c0f1a29
+    color: "#141314"
+    created: 1568389707047
+    data:
+      GITHUB_GRAPHQL_URL: https://api.github.com/graphql
+      GITHUB_PAT: abcdefghijklmnopqrstuvwxyz1234567890abcd
+    dataPropertyOrder:
+      "&":
+        - GITHUB_GRAPHQL_URL
+        - GITHUB_PAT
+    isPrivate: false
+    metaSortKey: 1568389707047
+    modified: 1568392141550
+    name: github.com
+    parentId: env_f05bef0c7999d21e2a6a7cf17a9634dd8191abf2
+    _type: environment
